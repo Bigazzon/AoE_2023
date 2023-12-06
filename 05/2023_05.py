@@ -57,7 +57,6 @@ def part2(lines):
         mapping_dict["seeds"][2 * i : 2 * i + 2]
         for i in range(len(mapping_dict["seeds"]) // 2)
     ]
-    location_list = []
     source_check_list = mapping_dict["seeds"]
 
     for k in mapping_dict.keys():
@@ -67,7 +66,6 @@ def part2(lines):
         target_check_list = []
         while len(source_check_list) > 0:
             start_source, source_length = source_check_list.pop(0)
-            found = False
             for mapping in mapping_dict[k]:
                 mapping_start_target, mapping_start_source, mapping_length = mapping
                 if (
@@ -75,7 +73,6 @@ def part2(lines):
                     <= start_source
                     < mapping_start_source + mapping_length
                 ):
-                    found = True
                     start_target = (
                         mapping_start_target + start_source - mapping_start_source
                     )
@@ -100,7 +97,7 @@ def part2(lines):
                         )
                     break
 
-            if not found:
+            else:
                 target_check_list.append([start_source, source_length])
 
         source_check_list = target_check_list
