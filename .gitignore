@@ -1,0 +1,4 @@
+utils/secret_session_cookie
+
+.vscode
+*/__pycache__
