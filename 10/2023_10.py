@@ -1,5 +1,3 @@
-import math
-import re
 import utils.advent as advent
 
 advent.setup(2023, 10)
