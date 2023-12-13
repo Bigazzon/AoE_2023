@@ -16,48 +16,24 @@ def parse_input(lines):
 
 
 def transpose(b):
-    transpose_b = ["" for _ in range(len(b[0]))]
-    for i in range(len(b)):
-        for j in range(len(b[i])):
-            transpose_b[j] += b[i][j]
-    return transpose_b
+    return [''.join(t) for t in zip(*b)]
 
 
-def check_reflections(b):
-    reflection_indices = []
-
-    for i in range(1, len(b)):
-        ok = True
-        for j in range(1, min(i + 1, len(b) - i + 1)):
-            for l in range(len(b[0])):
-                if b[i - j][l] != b[i + j - 1][l]:
-                    ok = False
-                    break
-            if not ok:
-                break
-        if not ok:
-            continue
-        reflection_indices.append(i)
-    return reflection_indices
-
-
-def check_reflections_w_error(b):
+def check_reflections(b, max_errors=0):
     reflection_indices = []
     for i in range(1, len(b)):
         errors = 0
-        ok = True
         for j in range(1, min(i + 1, len(b) - i + 1)):
             for l in range(len(b[0])):
                 if b[i - j][l] != b[i + j - 1][l]:
                     errors += 1
-                    if errors > 1:
-                        ok = False
+                    if errors > max_errors:
                         break
-            if not ok:
+            if errors > max_errors:
                 break
-        if not ok:
+        if errors > max_errors:
             continue
-        if errors == 1:
+        if errors == max_errors:
             reflection_indices.append(i)
     return reflection_indices
 
@@ -84,10 +60,10 @@ def part2(lines):
 
     for b in blocks:
         # extract row indeces
-        rows = check_reflections_w_error(b)
+        rows = check_reflections(b, max_errors=1)
 
         # extract column indeces
-        cols = check_reflections_w_error(transpose(b))
+        cols = check_reflections(transpose(b), max_errors=1)
 
         counter += sum(cols) + sum(rows) * 100
 
