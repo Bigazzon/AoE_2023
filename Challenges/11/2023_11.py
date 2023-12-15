@@ -61,7 +61,7 @@ def part2(lines):
 
 
 if __name__ == "__main__":
-    # with open("11/2023_11_debug.txt", "r") as file:
+    # with open("Challenges/11/2023_11_debug.txt", "r") as file:
     #     lines = file.read().splitlines()
     with advent.get_input() as file:
         lines = file.read().splitlines()

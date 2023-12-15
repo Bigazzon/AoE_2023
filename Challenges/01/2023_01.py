@@ -26,8 +26,6 @@ def part2(lines):
         "eight": "8",
         "nine": "9",
     }
-    with open("input.txt", "r") as file:
-        lines = file.read().splitlines()
     counter = 0
     for i, st in enumerate(lines):
         regexp_list = re.findall(r"\d", st)
@@ -61,8 +59,6 @@ def part2v2(lines):
         "eight": "e8t",
         "nine": "n9e",
     }
-    with open("input.txt", "r") as file:
-        lines = file.read().splitlines()
     int_list = []
     for idx, st in enumerate(lines):
         for k, v in NUMBER_NAMES.items():

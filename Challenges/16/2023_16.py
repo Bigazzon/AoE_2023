@@ -16,7 +16,7 @@ def part2(lines):
 
 
 if __name__ == "__main__":
-    with open("16/2023_16_debug.txt", "r") as file:
+    with open("Challenges/16/2023_16_debug.txt", "r") as file:
         lines = file.read().splitlines()
     # with advent.get_input() as file:
     #     lines = file.read().splitlines()
